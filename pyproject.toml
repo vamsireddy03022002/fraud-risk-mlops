@@ -1,0 +1,23 @@
+[project]
+name = "fraud-risk-mlops"
+version = "0.1.0"
+description = "Fraud risk scoring with production-grade MLOps"
+requires-python = ">=3.10"
+
+dependencies = [
+    "pytest",
+    "black",
+    "isort",
+    "flake8"
+]
+
+[tool.black]
+line-length = 88
+
+[tool.isort]
+profile = "black"
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203"]
+
