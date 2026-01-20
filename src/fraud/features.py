@@ -58,7 +58,6 @@ def build_features(
         "merch_lat",
         "merch_long",
         "unix_time",
-        "zip",
         "cc_num",
     ]
 

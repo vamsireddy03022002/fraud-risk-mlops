@@ -8,7 +8,10 @@ dependencies = [
     "pytest",
     "black",
     "isort",
-    "flake8"
+    "flake8",
+    "mlflow",
+    "scikit-learn",
+    "joblib"
 ]
 
 [tool.black]

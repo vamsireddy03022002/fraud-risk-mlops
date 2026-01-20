@@ -49,3 +49,5 @@ merch_long:
 is_fraud:
   dtype: int
   nullable: false
+
+

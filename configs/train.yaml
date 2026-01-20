@@ -1,0 +1,18 @@
+data:
+  train_path: data/raw/fraudTrain.csv
+  valid_path: data/raw/fraudTest.csv
+  schema_path: configs/schema.yaml
+
+features:
+  category_top_k: 20
+  include_merchant: false
+
+model:
+  type: logistic_regression
+  random_state: 42
+  max_iter: 200
+  class_weight: balanced
+
+mlflow:
+  experiment_name: fraud-risk
+  tracking_uri: file:./mlruns
