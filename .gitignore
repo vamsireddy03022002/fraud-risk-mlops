@@ -41,6 +41,12 @@ __pycache__/
 .env
 
 
-data/
+# Ignore real datasets
+/data/
+
+# Allow test fixtures
+!tests/data/
+!tests/data/**
+
 mlruns/
 artifacts/

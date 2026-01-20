@@ -1,0 +1,3 @@
+trans_date_trans_time,cc_num,merchant,category,amt,gender,lat,long,city_pop,unix_time,merch_lat,merch_long,is_fraud
+2019-01-01 01:00:00,1,m1,shopping,100.0,M,40.0,-70.0,100000,1546300800,41.0,-71.0,0
+

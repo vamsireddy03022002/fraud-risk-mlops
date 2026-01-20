@@ -10,7 +10,7 @@ features:
 model:
   type: logistic_regression
   random_state: 42
-  max_iter: 200
+  max_iter: 500
   class_weight: balanced
 
 mlflow:
