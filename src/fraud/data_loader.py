@@ -9,46 +9,34 @@ def load_schema(schema_path: str) -> dict:
 
 def load_data(csv_path: str, schema_path: str) -> pd.DataFrame:
     schema = load_schema(schema_path)
+    expected_columns = schema["columns"]
 
     df = pd.read_csv(csv_path)
 
-    # Drop accidental index column if present
+    # Drop accidental index column
     if "Unnamed: 0" in df.columns:
         df = df.drop(columns=["Unnamed: 0"])
 
-    # Check for missing required columns
-    missing_cols = set(schema.keys()) - set(df.columns)
+    # 1️⃣ Check for missing columns
+    missing_cols = set(expected_columns) - set(df.columns)
     if missing_cols:
-        raise ValueError(f"Missing required columns: {missing_cols}")
+        raise ValueError(f"Missing required columns: {sorted(missing_cols)}")
 
-    # Select only schema-defined columns (feature contract)
-    df = df[list(schema.keys())]
+    # 2️⃣ Enforce column order (optional but good discipline)
+    df = df[expected_columns]
 
-    for column, rules in schema.items():
-        expected_dtype = rules["dtype"]
+    # 3️⃣ Enforce dtypes
+    for col, expected_dtype in schema["dtypes"].items():
+        try:
+            df[col] = df[col].astype(expected_dtype)
+        except Exception as exc:
+            raise TypeError(
+                f"Column '{col}' cannot be cast to {expected_dtype}"
+            ) from exc
 
-        # Datetime parsing
-        if expected_dtype == "datetime":
-            df[column] = pd.to_datetime(
-                df[column],
-                errors="raise",
-            )
-
-        # Null check
-        if not rules["nullable"] and df[column].isnull().any():
-            raise ValueError(f"Null values found in non-nullable column: {column}")
-
-        # Type validation
-        if expected_dtype == "float":
-            if not pd.api.types.is_float_dtype(df[column]):
-                raise TypeError(f"Column {column} must be float")
-
-        elif expected_dtype == "int":
-            if not pd.api.types.is_integer_dtype(df[column]):
-                raise TypeError(f"Column {column} must be int")
-
-        elif expected_dtype == "string":
-            if not pd.api.types.is_object_dtype(df[column]):
-                raise TypeError(f"Column {column} must be string")
+    # 4️⃣ Enforce non-null constraints
+    for col in schema.get("non_nullable", []):
+        if df[col].isnull().any():
+            raise ValueError(f"Null values found in non-nullable column: {col}")
 
     return df

@@ -1,53 +1,39 @@
-trans_date_trans_time:
-  dtype: datetime
-  nullable: false
+columns:
+  - trans_date_trans_time
+  - cc_num
+  - merchant
+  - category
+  - amt
+  - gender
+  - zip
+  - lat
+  - long
+  - city_pop
+  - unix_time
+  - merch_lat
+  - merch_long
+  - is_fraud
 
-cc_num:
-  dtype: int
-  nullable: false
+dtypes:
+  trans_date_trans_time: str
+  cc_num: int
+  merchant: str
+  category: str
+  amt: float
+  gender: str
+  zip: int
+  lat: float
+  long: float
+  city_pop: int
+  unix_time: int
+  merch_lat: float
+  merch_long: float
+  is_fraud: int
 
-merchant:
-  dtype: string
-  nullable: false
-
-category:
-  dtype: string
-  nullable: false
-
-amt:
-  dtype: float
-  nullable: false
-
-gender:
-  dtype: string
-  nullable: false
-
-lat:
-  dtype: float
-  nullable: false
-
-long:
-  dtype: float
-  nullable: false
-
-city_pop:
-  dtype: int
-  nullable: false
-
-unix_time:
-  dtype: int
-  nullable: false
-
-merch_lat:
-  dtype: float
-  nullable: false
-
-merch_long:
-  dtype: float
-  nullable: false
-
-is_fraud:
-  dtype: int
-  nullable: false
-
-
+non_nullable:
+  - trans_date_trans_time
+  - cc_num
+  - amt
+  - zip
+  - unix_time
+  - is_fraud
