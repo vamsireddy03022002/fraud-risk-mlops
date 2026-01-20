@@ -1,0 +1,51 @@
+trans_date_trans_time:
+  dtype: datetime
+  nullable: false
+
+cc_num:
+  dtype: int
+  nullable: false
+
+merchant:
+  dtype: string
+  nullable: false
+
+category:
+  dtype: string
+  nullable: false
+
+amt:
+  dtype: float
+  nullable: false
+
+gender:
+  dtype: string
+  nullable: false
+
+lat:
+  dtype: float
+  nullable: false
+
+long:
+  dtype: float
+  nullable: false
+
+city_pop:
+  dtype: int
+  nullable: false
+
+unix_time:
+  dtype: int
+  nullable: false
+
+merch_lat:
+  dtype: float
+  nullable: false
+
+merch_long:
+  dtype: float
+  nullable: false
+
+is_fraud:
+  dtype: int
+  nullable: false
